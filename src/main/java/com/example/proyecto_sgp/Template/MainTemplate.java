@@ -2,17 +2,14 @@ package com.example.proyecto_sgp.Template;
 
 public class MainTemplate {
     public static void main(String[] args) {
-        FormularioPrestamoTemplate formulario1 = new FormularioRecursoNoDisponible();
-        formulario1.procesarFormulario(); // llama formulario con recurso no disponible
+        
+        FormularioPrestamoTemplate formularioCoordinador = new FormularioPrestamoCoordinador();
+        System.out.println("Proceso para Coordinador:");
+        formularioCoordinador.procesarFormulario();
 
-        System.out.println();
-
-        FormularioPrestamoTemplate formulario2 = new FormularioHorarioNoPermitido();
-        formulario2.procesarFormulario(); // llama formulario con horario no permitido
-
-        System.out.println();
-
-        FormularioPrestamoTemplate formulario3 = new FormularioPrestamoExitoso();
-        formulario3.procesarFormulario(); //llama formulario exitoso
+        // Simulación de préstamo de recursos para un Solicitante
+        FormularioPrestamoTemplate formularioSolicitante = new FormularioPrestamoSolicitante();
+        System.out.println("\nProceso para Solicitante:");
+        formularioSolicitante.procesarFormulario();
     }
 }
