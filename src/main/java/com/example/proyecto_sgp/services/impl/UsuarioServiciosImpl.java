@@ -41,6 +41,6 @@ public class UsuarioServiciosImpl implements UsuarioServicios {
 
     @Override
     public void eliminarUsuario(String correo) {
-        usuarioRepositorio.deletedByCorreo(correo);
+        //usuarioRepositorio.deletedByCorreo(correo);
     }
 }
