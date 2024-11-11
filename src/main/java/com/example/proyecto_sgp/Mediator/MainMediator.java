@@ -1,15 +1,18 @@
 package com.example.proyecto_sgp.Mediator;
 
 public class MainMediator {
+
     public static void main(String[] args) {
-        SistemaMediator mediator = new SistemaMediatorImpl();
-
-        Solicitud solicitud1 = new Solicitud("Usuario1", "Proyector", mediator);
-        Solicitud solicitud2 = new Solicitud("Usuario2", "Laptop", mediator);
-        Solicitud solicitud3 = new Solicitud("Usuario3", "Proyector", mediator);
-
-        solicitud1.enviarSolicitud("Proyector");
+        
+        // crea el mediador
+        SistemaMediator sistemaMediator = new SistemaMediatorImpl();
+        
+        Solicitud solicitud1 = new Solicitud("usuario1", "R001", sistemaMediator);
+        Solicitud solicitud2 = new Solicitud("usuario2", "Laptop", sistemaMediator);
+        
+        solicitud1.enviarSolicitud("R001");
+        
         solicitud2.enviarSolicitud("Laptop");
-        solicitud3.enviarSolicitud("Proyector");
+    
     }
 }

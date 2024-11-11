@@ -9,10 +9,9 @@ import com.example.proyecto_sgp.Observer.Observador;
 import com.example.proyecto_sgp.Observer.GestorSolicitudes;
 import com.example.proyecto_sgp.Observer.NotificacionAdministrador;
 import com.example.proyecto_sgp.Observer.NotificacionSolicitante;
-import com.example.proyecto_sgp.Template.FormularioHorarioNoPermitido;
-import com.example.proyecto_sgp.Template.FormularioPrestamoExitoso;
+import com.example.proyecto_sgp.Template.FormularioPrestamoCoordinador;
+import com.example.proyecto_sgp.Template.FormularioPrestamoSolicitante;
 import com.example.proyecto_sgp.Template.FormularioPrestamoTemplate;
-import com.example.proyecto_sgp.Template.FormularioRecursoNoDisponible;
 
 public class MainPatrones {
     public static void main(String[] args) {
@@ -30,18 +29,16 @@ public class MainPatrones {
     }
 
     private static void ejecutarPatronMediator() {
-        // crea el Mediator
-        SistemaMediator mediator = new SistemaMediatorImpl();
-
-        // Crea las solicitudes
-        Solicitud solicitud1 = new Solicitud("Usuario1", "Proyector", mediator);
-        Solicitud solicitud2 = new Solicitud("Usuario2", "Laptop", mediator);
-        Solicitud solicitud3 = new Solicitud("Usuario3", "Proyector", mediator);
-
-        // Envia solicitudes al mediador
-        solicitud1.enviarSolicitud("Proyector");
+        
+        // crea el mediador
+        SistemaMediator sistemaMediator = new SistemaMediatorImpl();
+        
+        Solicitud solicitud1 = new Solicitud("usuario1", "R001", sistemaMediator);
+        Solicitud solicitud2 = new Solicitud("usuario2", "Laptop", sistemaMediator);
+        
+        solicitud1.enviarSolicitud("R001");
+        
         solicitud2.enviarSolicitud("Laptop");
-        solicitud3.enviarSolicitud("Proyector");
     }
 
     private static void ejecutarPatronMemento() {
@@ -96,18 +93,14 @@ public class MainPatrones {
 
     private static void ejecutarPatronTemplate() {
         // crea formularios con diferentes comportamientos
-        FormularioPrestamoTemplate formulario1 = new FormularioRecursoNoDisponible();
-        formulario1.procesarFormulario(); // ejecuta el formulario con recurso no disponible
+        FormularioPrestamoTemplate formularioCoordinador = new FormularioPrestamoCoordinador();
+        System.out.println("Proceso para Coordinador:");
+        formularioCoordinador.procesarFormulario();
 
-        System.out.println(); // espacio para separar los resultados
-
-        FormularioPrestamoTemplate formulario2 = new FormularioHorarioNoPermitido();
-        formulario2.procesarFormulario(); // ejecuta el formulario con horario no permitido
-
-        System.out.println(); // espacio para separar los resultados
-
-        FormularioPrestamoTemplate formulario3 = new FormularioPrestamoExitoso();
-        formulario3.procesarFormulario(); // llama formulario exitoso
+        // Simulación de préstamo de recursos para un Solicitante
+        FormularioPrestamoTemplate formularioSolicitante = new FormularioPrestamoSolicitante();
+        System.out.println("\nProceso para Solicitante:");
+        formularioSolicitante.procesarFormulario();
     }
 
 }
