@@ -1,0 +1,30 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: UseGo@0
+    inputs:
+      version: '1.21'
+
+  - script: |
+      go mod tidy
+      go test -coverprofile=coverage.out ./...
+    displayName: 'Run tests with coverage'
+
+  - script: |
+      go build -o bin/myapp
+    displayName: 'Build binary'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/TEST-*.xml'
+    condition: succeededOrFailed()
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'bin'
+      ArtifactName: 'drop'
